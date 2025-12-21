@@ -1,6 +1,6 @@
 <div align="center">
 
-# ПО ВСЕМ ВОПРОСАМ ОБРАЩАТЬСЯ В ТЕЛЕГРАМ: [https://t.me/Lux1deDev]. ОТВЕЧАЮ ОПЕРАТИВНО.
+# ПО ВСЕМ ВОПРОСАМ ОБРАЩАТЬСЯ В ТЕЛЕГРАМ: [https://t.me/Lux1de]. ОТВЕЧАЮ ОПЕРАТИВНО.
 
 
 # 🎮 zapret-roblox
