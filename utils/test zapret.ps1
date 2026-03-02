@@ -475,23 +475,13 @@ if ($testType -eq 'standard') {
 
     if ($rawTargets.Count -eq 0) {
         Write-Host "[INFO] targets.txt missing or empty. Using defaults." -ForegroundColor Gray
+        Add-OrSet $rawTargets "Roblox Main"            "https://www.roblox.com"
+        Add-OrSet $rawTargets "Roblox Auth"            "https://auth.roblox.com"
         Add-OrSet $rawTargets "Discord Main"           "https://discord.com"
         Add-OrSet $rawTargets "Discord Gateway"        "https://gateway.discord.gg"
         Add-OrSet $rawTargets "Discord CDN"            "https://cdn.discordapp.com"
-        Add-OrSet $rawTargets "Discord Updates"        "https://updates.discord.com"
         Add-OrSet $rawTargets "YouTube Web"            "https://www.youtube.com"
-        Add-OrSet $rawTargets "YouTube Short"          "https://youtu.be"
-        Add-OrSet $rawTargets "YouTube Image"          "https://i.ytimg.com"
-        Add-OrSet $rawTargets "YouTube Video Redirect" "https://redirector.googlevideo.com"
-        Add-OrSet $rawTargets "Google Main"            "https://www.google.com"
-        Add-OrSet $rawTargets "Google Gstatic"         "https://www.gstatic.com"
-        Add-OrSet $rawTargets "Cloudflare Web"         "https://www.cloudflare.com"
-        Add-OrSet $rawTargets "Cloudflare CDN"         "https://cdnjs.cloudflare.com"
-        Add-OrSet $rawTargets "Cloudflare DNS 1.1.1.1" "PING:1.1.1.1"
-        Add-OrSet $rawTargets "Cloudflare DNS 1.0.0.1" "PING:1.0.0.1"
-        Add-OrSet $rawTargets "Google DNS 8.8.8.8"     "PING:8.8.8.8"
-        Add-OrSet $rawTargets "Google DNS 8.8.4.4"     "PING:8.8.4.4"
-        Add-OrSet $rawTargets "Quad9 DNS 9.9.9.9"      "PING:9.9.9.9"
+        Add-OrSet $rawTargets "YouTube Video"          "https://redirector.googlevideo.com"
     } else {
         Write-Host ""
         Write-Host "[INFO] Loaded targets from targets.txt" -ForegroundColor Gray
