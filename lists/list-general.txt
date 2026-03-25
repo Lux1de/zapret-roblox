@@ -269,6 +269,7 @@ telegram.jp
 telegram.me
 telegram.net
 telegram.org
+api.telegram.org
 telegram.qa
 telegram.ru
 telegram.services
