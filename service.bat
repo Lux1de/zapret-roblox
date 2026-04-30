@@ -1,5 +1,5 @@
 @echo off
-set "LOCAL_VERSION=1.9.7"
+set "LOCAL_VERSION=1.9.8"
 
 :: External commands
 if "%~1"=="status_zapret" (
@@ -63,7 +63,11 @@ set "menu_choice=null"
 
 echo.
 echo   ZAPRET SERVICE MANAGER v!LOCAL_VERSION!
-echo   ----------------------------------------
+echo   --------------------------------------------------------
+echo.
+echo   https://t.me/rbxforest  Updates, events, chat, robux
+echo.
+echo   --------------------------------------------------------
 echo.
 echo   :: SERVICE
 echo      1. Install Service
@@ -453,7 +457,7 @@ echo:
 tasklist /FI "IMAGENAME eq AdguardSvc.exe" | find /I "AdguardSvc.exe" > nul
 if !errorlevel!==0 (
     call :PrintRed "[X] Adguard process found. Adguard may cause problems with Discord"
-    call :PrintRed "https://github.com/Lux1de/zapret-roblox/issues/417"
+    call :PrintRed "https://github.com/Flowseal/zapret-discord-youtube/issues/417"
 ) else (
     call :PrintGreen "Adguard check passed"
 )
@@ -463,7 +467,7 @@ echo:
 sc query | findstr /I "Killer" > nul
 if !errorlevel!==0 (
     call :PrintRed "[X] Killer services found. Killer conflicts with zapret"
-    call :PrintRed "https://github.com/Lux1de/zapret-roblox/issues/2512#issuecomment-2821119513"
+    call :PrintRed "https://github.com/Flowseal/zapret-discord-youtube/issues/2512#issuecomment-2821119513"
 ) else (
     call :PrintGreen "Killer check passed"
 )
@@ -554,9 +558,9 @@ set "hostsFile=%SystemRoot%\System32\drivers\etc\hosts"
 if exist "%hostsFile%" (
     set "yt_found=0"
     >nul 2>&1 findstr /I "youtube.com" "%hostsFile%" && set "yt_found=1"
-    >nul 2>&1 findstr /I "yotou.be" "%hostsFile%" && set "yt_found=1"
+    >nul 2>&1 findstr /I "youtu.be" "%hostsFile%" && set "yt_found=1"
     if !yt_found!==1 (
-        call :PrintYellow "[?] Your hosts file contains entries for youtube.com or yotou.be. This may cause problems with YouTube access"
+        call :PrintYellow "[?] Your hosts file contains entries for youtube.com or youtu.be. This may cause problems with YouTube access"
     )
 )
 
@@ -751,7 +755,7 @@ echo   3. UDP only
 echo.
 set "GameFilterChoice=0"
 set /p "GameFilterChoice=Select option (0-3, default: 0): "
-if %GameFilterChoice%=="" set "GameFilterChoice=0"
+if "%GameFilterChoice%"=="" set "GameFilterChoice=0"
 
 if "%GameFilterChoice%"=="0" (
     if exist "%gameFlagFile%" (
@@ -878,12 +882,17 @@ chcp 437 > nul
 cls
 
 set "listFile=%~dp0lists\ipset-all.txt"
-set "url=https://raw.githubusercontent.com/Lux1de/zapret-roblox/refs/heads/main/.service/ipset-service.txt"
+set "url=https://raw.githubusercontent.com/Flowseal/zapret-discord-youtube/refs/heads/main/.service/ipset-service.txt"
 
 echo Updating ipset-all...
 
 if exist "%SystemRoot%\System32\curl.exe" (
-    curl -L -o "%listFile%" "%url%"
+    curl --version | find "libcurl/7"
+    if !errorlevel!==0 (
+        curl --ssl-no-revoke -L -o "%listFile%" "%url%"
+    ) else (
+        curl --ssl-revoke-best-effort -L -o "%listFile%" "%url%"
+    )
 ) else (
     powershell -NoProfile -Command ^
         "$url = '%url%';" ^
@@ -906,7 +915,7 @@ chcp 437 > nul
 cls
 
 set "hostsFile=%SystemRoot%\System32\drivers\etc\hosts"
-set "hostsUrl=https://raw.githubusercontent.com/Lux1de/zapret-roblox/refs/heads/main/.service/hosts"
+set "hostsUrl=https://raw.githubusercontent.com/Flowseal/zapret-discord-youtube/refs/heads/main/.service/hosts"
 set "tempFile=%TEMP%\zapret_hosts.txt"
 set "needsUpdate=0"
 
@@ -1007,7 +1016,7 @@ exit /b
 where %1 >nul 2>&1
 if %errorLevel% neq 0 (
     echo [ERROR] %1 not found in PATH
-    echo Fix your PATH variable with instructions here https://github.com/Lux1de/zapret-roblox/issues/7490
+    echo Fix your PATH variable with instructions here https://github.com/Flowseal/zapret-discord-youtube/issues/7490
     pause
     exit /b 1
 )
